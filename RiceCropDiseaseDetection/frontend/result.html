@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rice Crop Disease Detection Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="result-container">
+        <h1>Rice Crop Disease Detection Result</h1>
+        
+        <div class="result-content">
+            <img id="uploadedImage" src="{{ result.image_path }}" alt="Uploaded Image">
+            
+            <h2>Prediction: {{ result.prediction }}</h2>
+            
+            <h3>Probabilities:</h3>
+            <ul>
+                {% for i in range(result.probabilities|length) %}
+                <li>{{ result.classes[i] }}: {{ '%.2f' | format(result.probabilities[i] * 100) }}%</li>
+                {% endfor %}
+            </ul>
+            <button onclick="window.open('{{ url_for('precaution', disease=result.prediction) }}', '_blank')">View Precautions</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
