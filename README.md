@@ -56,8 +56,8 @@ In the backend directory, run:
 python app.py
 The app will be accessible at http://127.0.0.1:5000/.
 
-## Project Structure 
-
+## Project Structure
+``` 
 RiceCropDiseaseDetection/
 ├── backend/
 │   ├── app.py              # Main Flask application
