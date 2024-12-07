@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precautions for {{ disease }}</title>
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #81c784, #388e3c); /* Green gradient */
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        /* Precaution Container */
+        .precaution-container {
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 800px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .precaution-container:hover {
+            transform: scale(1.05); /* Slight zoom effect on hover */
+        }
+
+        h1 {
+            color: #388e3c;
+            margin-bottom: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        ol {
+            list-style-type: decimal;
+            text-align: left;
+            margin-top: 20px;
+            padding-left: 30px;
+        }
+
+        li {
+            font-size: 18px;
+            color: #333;
+            margin: 12px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: #388e3c;
+        }
+
+        /* Enhanced Button Styling */
+        button {
+            background: linear-gradient(145deg, #388e3c, #4CAF50); /* Gradient green background */
+            color: white;
+            padding: 14px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background: linear-gradient(145deg, #4CAF50, #388e3c); /* Reverse gradient on hover */
+            transform: translateY(-3px); /* Lift the button */
+        }
+
+        button:active {
+            background: linear-gradient(145deg, #2e7d32, #388e3c); /* Darker green on active */
+            transform: translateY(3px); /* Button depression on click */
+        }
+
+        /* Animation for Title */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .precaution-container {
+                width: 90%;
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            ol {
+                padding-left: 20px;
+            }
+
+            li {
+                font-size: 16px;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="precaution-container">
+        <h1>Precautions for {{ disease }}</h1>
+        
+        <!-- List of Precautions -->
+        <ol>
+            {% for precaution in precaution_list %}
+                <li>{{ precaution }}</li>
+            {% endfor %}
+        </ol>
+        
+        <!-- Button to close the window -->
+        <button onclick="window.history.back()">Go Back</button>
+        <a href="{{ url_for('frequency') }}" class="btn btn-info mt-3" style="text-decoration: none; display: inline-block; background: linear-gradient(145deg, #388e3c, #4CAF50); color: white; padding: 14px 30px; border-radius: 25px; font-size: 18px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); transition: all 0.3s ease-in-out;">View Disease Frequency</a>
+    </div>
+</body>
+</html>

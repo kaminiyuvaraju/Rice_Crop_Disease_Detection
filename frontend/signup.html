@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+        /* Page Background */
+        body {
+            background-color: #0cbd3b;  /* Light blue background for a soft, welcoming feel */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Signup Form Container */
+        .menu {
+            background: rgba(245, 248, 245, 0.9); /* Slight transparency with white background */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        /* Input Fields */
+        .rounded-input {
+            border-radius: 20px;
+            padding: 10px;
+            border: 1px solid #4a90e2; /* Border color matching the button */
+        }
+
+        /* Submit Button Styling */
+        .signupbutton {
+            background-color: #4a90e2;  /* Soft blue button */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .signupbutton:hover {
+            background-color: #357ab7;  /* Darker shade for hover effect */
+        }
+
+        /* Form Label Styling */
+        label {
+            font-weight: bold;
+        }
+
+        /* Signup Page Heading */
+        h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #4a90e2;  /* Matching the button color */
+        }
+
+        /* Link to Login Page */
+        .form-group p {
+            font-size: 14px;
+        }
+
+        .form-group a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+
+        .form-group a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        // Client-side password confirmation validation
+        function validatePasswords() {
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm_password').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return false;  // Prevent form submission
+            }
+            return true;  // Allow form submission
+        }
+    </script>
+</head>
+<body>
+    <div class="container col-md-5 col-lg-4 menu">
+        <h2>SIGN UP</h2>
+        <form action="/signup" method="post" onsubmit="return validatePasswords()">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Choose a username" class="form-control rounded-input" required/>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Enter your email" class="form-control rounded-input" required/>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Create a password" class="form-control rounded-input" required/>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm your password" class="form-control rounded-input" required/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Sign Up" class="signupbutton" />
+            </div>
+            <div class="form-group">
+                <p>Already have an account? <a href="/login">Login here</a></p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

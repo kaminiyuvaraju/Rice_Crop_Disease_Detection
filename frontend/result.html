@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rice Crop Disease Detection Result</title>
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #81c784, #388e3c); /* Green gradient */
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        /* Result Container */
+        .result-container {
+            background-color: rgba(255, 255, 255, 0.9); /* Slight white background */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 800px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .result-container:hover {
+            transform: scale(1.05); /* Slight zoom effect on hover */
+        }
+
+        h1 {
+            color: #388e3c;
+            margin-bottom: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        h2 {
+            color: #388e3c;
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: green;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Image Box Model */
+        #uploadedImage {
+            width: 300px;              /* Width of the image */
+            height: auto;              /* Auto height to maintain aspect ratio */
+            border: 5px solid #388e3c; /* Green border around the image */
+            border-radius: 15px;       /* Rounded corners for the image */
+            padding: 10px;             /* Padding inside the image box */
+            margin: 20px 0;            /* Margin around the image */
+            box-sizing: border-box;    /* Include padding and border in total width/height */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #uploadedImage:hover {
+            transform: scale(1.05); /* Slight zoom effect on hover */
+        }
+
+        /* Probabilities List */
+        ul {
+            text-align: left;
+            margin-top: 20px;
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            font-size: 16px;
+            color: #333;
+            margin: 12px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: #388e3c;
+        }
+
+        /* Button Styling */
+        button {
+            background-color: #388e3c;
+            color: white;
+            padding: 14px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: background-color 0.3s, transform 0.2s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #4CAF50;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            background-color: #2e7d32;
+            transform: translateY(2px);
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .result-container {
+                width: 90%;
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h1>Rice Crop Disease Detection Result</h1>
+        
+        <div class="result-content">
+            <!-- Display uploaded image with box model styling -->
+            <img id="uploadedImage" src="{{ result.image_path }}" alt="Uploaded Image">
+            
+            <!-- Display prediction -->
+            <h2>Prediction: {{ result.prediction }}</h2>
+            
+            <!-- Display probabilities list -->
+            <h3>Probabilities:</h3>
+            <ul>
+                {% for i in range(result.probabilities|length) %}
+                    <li>{{ result.classes[i] }}: {{ '%.2f' | format(result.probabilities[i] * 100) }}%</li>
+                {% endfor %}
+            </ul>
+            
+            <!-- Button to view precautions -->
+            <button onclick="window.open('{{ url_for('precaution', disease=result.prediction) }}', '_blank')">View Precautions</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #81c784, #388e3c); /* Green gradient */
+            background-size: cover;
+            background-blend-mode: overlay;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Menu Container */
+        .menu {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h2 {
+            color: #388e3c;
+            margin-bottom: 20px;
+        }
+
+        /* Input Styles */
+        .rounded-input {
+            border-radius: 20px;
+            padding: 10px;
+            border: 1px solid #388e3c;
+            margin-bottom: 20px;
+        }
+
+        .loginbutton {
+            background-color: #388e3c;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .loginbutton:hover {
+            background-color: #4CAF50;
+        }
+
+        .loginbutton:active {
+            background-color: #2e7d32;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .forgot-password, .signup-link {
+            margin-top: 20px;
+            color: #388e3c;
+        }
+
+        .forgot-password a, .signup-link a {
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .menu {
+                width: 90%;
+                padding: 30px;
+            }
+
+            .loginbutton {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <h2>LOGIN</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                    {% for category, message in messages %}
+                        <li class="error-message">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Username" class="form-control rounded-input" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Password" class="form-control rounded-input" required />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="loginbutton" />
+            </div>
+        </form>
+
+        <!-- <div class="forgot-password">
+            <a href="/forgot-password">Forgot Password?</a>
+        </div> -->
+        <div class="signup-link">
+            <a href="/signup">Don't have an account? Sign up here!</a>
+        </div>
+    </div>
+</body>
+</html>

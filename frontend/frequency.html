@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Frequency</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #11cb39, #2575fc); /* New gradient background */
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin-top: 50px;
+            width: 80%;
+            max-width: 900px;
+        }
+        h2 {
+            color: #2f80ed;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th {
+            background-color: #2f80ed;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        td {
+            padding: 12px;
+            text-align: center;
+            font-size: 1rem;
+            color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #e0e0e0;
+        }
+        .btn-primary {
+            background-color: #2f80ed;
+            border-color: #2f80ed;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #1a60a3;
+            border-color: #1a60a3;
+            transform: scale(1.05);
+        }
+        .btn-primary:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(47, 128, 237, 0.5);
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        .back-button {
+            margin-top: 30px;
+            text-align: center;
+        }
+        p{
+            color :#e0e0e0
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Disease Prediction Frequency</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Disease</th>
+                    <th scope="col">Prediction Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in frequency_data %}
+                    <tr>
+                        <td>{{ entry.disease }}</td>
+                        <td>{{ entry.count }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <!-- Back to Dashboard Button -->
+        <div class="back-button">
+            <a href="{{ url_for('index') }}" class="btn btn-primary">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Rice Crop Disease Detection | All Rights Reserved</p>
+    </div>
+</body>
+</html>

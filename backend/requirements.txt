@@ -1,0 +1,6 @@
+Flask
+flask-cors
+tensorflow
+matplotlib
+numpy
+psycopg2
