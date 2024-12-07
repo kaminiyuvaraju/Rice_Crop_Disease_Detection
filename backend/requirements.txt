@@ -4,3 +4,11 @@ tensorflow
 matplotlib
 numpy
 psycopg2
+keras==2.12.0
+pandas==1.5.3
+opencv-python==4.7.0.72
+scikit-learn==1.2.2
+scipy==1.10.1
+Pillow==9.5.0
+h5py==3.8.0
+gunicorn==20.1.0
