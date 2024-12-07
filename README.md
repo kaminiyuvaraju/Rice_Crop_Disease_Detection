@@ -40,7 +40,6 @@ Users can upload images of rice leaves, and the system will predict the disease 
 ### Create a Virtual Environment:
 
 #### Windows:
-```bash
 python -m venv env
 env\Scripts\activate
 #### Ubuntu : 
